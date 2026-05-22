@@ -2,7 +2,7 @@
 Crop Calendar Utility
 Provides sowing/harvesting seasons and water requirements for common crops.
 """
-from typing import TypedDict
+from typing_extensions import TypedDict
 
 
 class CropCalendar(TypedDict):
