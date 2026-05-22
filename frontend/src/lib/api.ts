@@ -1,7 +1,6 @@
 import axios from "axios";
 
-export const API_BASE =
-  import.meta.env.VITE_API_URL || "http://127.0.0.1:8000";
+export const API_BASE = import.meta.env.VITE_API_URL || "http://127.0.0.1:8000";
 
 export interface CropPredictionInput {
   N: number;
@@ -35,21 +34,17 @@ export interface ChatResponse {
   reply: string;
 }
 
-export async function predictCrop(
-  input: CropPredictionInput
-): Promise<CropPredictionResponse> {
-  const { data } = await axios.post<CropPredictionResponse>(
-    `${API_BASE}/predict-crop`,
-    input,
-    { timeout: 20000 }
-  );
+export async function predictCrop(input: CropPredictionInput): Promise<CropPredictionResponse> {
+  const { data } = await axios.post<CropPredictionResponse>(`${API_BASE}/predict-crop`, input, {
+    timeout: 20000,
+  });
 
   return data;
 }
 
 export async function sendChatMessage(
   message: string,
-  language: string = "en"
+  language: string = "en",
 ): Promise<ChatResponse> {
   const { data } = await axios.post<ChatResponse>(
     `${API_BASE}/chat`,
@@ -57,7 +52,7 @@ export async function sendChatMessage(
       message,
       language,
     },
-    { timeout: 20000 }
+    { timeout: 20000 },
   );
 
   return data;

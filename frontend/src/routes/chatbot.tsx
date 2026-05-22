@@ -5,18 +5,16 @@ import { Send, Bot, User, Sparkles } from "lucide-react";
 
 export const Route = createFileRoute("/chatbot")({
   component: Chatbot,
-  head: () => ({
-    meta: [
-      { title: "AI Chatbot — Krishi AI" },
-      { name: "description", content: "Chat with the Krishi AI farming assistant in English or Hindi." },
-    ],
-  }),
 });
 
 type Msg = { id: number; role: "user" | "bot"; text: string };
 
 const starter: Msg[] = [
-  { id: 1, role: "bot", text: "Namaste 🙏 I'm Krishi AI. Ask me anything about crops, soil, fertilizer or weather!" },
+  {
+    id: 1,
+    role: "bot",
+    text: "Namaste 🙏 I'm Krishi AI. Ask me anything about crops, soil, fertilizer or weather!",
+  },
 ];
 
 const suggestions = [
@@ -28,10 +26,14 @@ const suggestions = [
 
 function fakeReply(q: string): string {
   const lower = q.toLowerCase();
-  if (lower.includes("wheat")) return "Wheat is best sown between October and December. Ensure soil pH is 6.0–7.5 and apply NPK 120:60:40 kg/ha.";
-  if (lower.includes("rice")) return "For rice in monsoon, use urea in split doses (3 applications) and maintain 5 cm standing water during tillering.";
-  if (lower.includes("aphid") || lower.includes("pest")) return "Try neem oil spray (5 ml/L) every 7 days. Encourage ladybugs — they're natural aphid predators.";
-  if (lower.includes("soil")) return "Healthy soil is loamy with pH 6.0–7.5, good organic matter, and balanced NPK. Test every season for best results.";
+  if (lower.includes("wheat"))
+    return "Wheat is best sown between October and December. Ensure soil pH is 6.0–7.5 and apply NPK 120:60:40 kg/ha.";
+  if (lower.includes("rice"))
+    return "For rice in monsoon, use urea in split doses (3 applications) and maintain 5 cm standing water during tillering.";
+  if (lower.includes("aphid") || lower.includes("pest"))
+    return "Try neem oil spray (5 ml/L) every 7 days. Encourage ladybugs — they're natural aphid predators.";
+  if (lower.includes("soil"))
+    return "Healthy soil is loamy with pH 6.0–7.5, good organic matter, and balanced NPK. Test every season for best results.";
   return "Great question! For a precise answer, share your soil type, location, and the crop you're planning. You can also use the Recommendation page for detailed AI insights.";
 }
 
@@ -52,10 +54,13 @@ function Chatbot() {
     setMessages((m) => [...m, userMsg]);
     setInput("");
     setTyping(true);
-    setTimeout(() => {
-      setMessages((m) => [...m, { id: Date.now() + 1, role: "bot", text: fakeReply(q) }]);
-      setTyping(false);
-    }, 900 + Math.random() * 700);
+    setTimeout(
+      () => {
+        setMessages((m) => [...m, { id: Date.now() + 1, role: "bot", text: fakeReply(q) }]);
+        setTyping(false);
+      },
+      900 + Math.random() * 700,
+    );
   };
 
   return (
@@ -65,7 +70,9 @@ function Chatbot() {
           <Sparkles className="h-3.5 w-3.5" /> 24/7 Farming Assistant
         </span>
         <h1 className="mt-3 text-4xl sm:text-5xl font-bold">AI Chatbot</h1>
-        <p className="mt-3 text-muted-foreground">Ask questions in English or Hindi. Get instant farming advice.</p>
+        <p className="mt-3 text-muted-foreground">
+          Ask questions in English or Hindi. Get instant farming advice.
+        </p>
       </div>
 
       <div className="mt-8 rounded-3xl bg-card border border-border shadow-soft overflow-hidden flex flex-col h-[600px]">
@@ -86,19 +93,24 @@ function Chatbot() {
             {messages.map((m) => (
               <motion.div
                 key={m.id}
-                initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
                 className={`flex gap-3 ${m.role === "user" ? "flex-row-reverse" : ""}`}
               >
-                <div className={`h-8 w-8 rounded-full flex items-center justify-center shrink-0 ${
-                  m.role === "user" ? "bg-harvest/20 text-earth" : "bg-primary/10 text-primary"
-                }`}>
+                <div
+                  className={`h-8 w-8 rounded-full flex items-center justify-center shrink-0 ${
+                    m.role === "user" ? "bg-harvest/20 text-earth" : "bg-primary/10 text-primary"
+                  }`}
+                >
                   {m.role === "user" ? <User className="h-4 w-4" /> : <Bot className="h-4 w-4" />}
                 </div>
-                <div className={`max-w-[75%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed ${
-                  m.role === "user"
-                    ? "bg-gradient-hero text-primary-foreground rounded-tr-sm"
-                    : "bg-muted text-foreground rounded-tl-sm"
-                }`}>
+                <div
+                  className={`max-w-[75%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed ${
+                    m.role === "user"
+                      ? "bg-gradient-hero text-primary-foreground rounded-tr-sm"
+                      : "bg-muted text-foreground rounded-tl-sm"
+                  }`}
+                >
                   {m.text}
                 </div>
               </motion.div>
@@ -127,7 +139,11 @@ function Chatbot() {
         {messages.length <= 1 && (
           <div className="px-5 pb-3 flex flex-wrap gap-2">
             {suggestions.map((s) => (
-              <button key={s} onClick={() => send(s)} className="text-xs px-3 py-1.5 rounded-full bg-muted hover:bg-primary hover:text-primary-foreground transition-colors">
+              <button
+                key={s}
+                onClick={() => send(s)}
+                className="text-xs px-3 py-1.5 rounded-full bg-muted hover:bg-primary hover:text-primary-foreground transition-colors"
+              >
                 {s}
               </button>
             ))}
@@ -135,7 +151,10 @@ function Chatbot() {
         )}
 
         <form
-          onSubmit={(e) => { e.preventDefault(); send(input); }}
+          onSubmit={(e) => {
+            e.preventDefault();
+            send(input);
+          }}
           className="border-t border-border p-3 flex gap-2 bg-card"
         >
           <input

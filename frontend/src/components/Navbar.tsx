@@ -20,7 +20,9 @@ export function Navbar() {
           <div className="h-9 w-9 rounded-xl bg-gradient-hero flex items-center justify-center shadow-soft group-hover:scale-110 transition-transform">
             <Leaf className="h-5 w-5 text-primary-foreground" />
           </div>
-          <span className="font-bold text-lg tracking-tight">Krishi <span className="text-primary">AI</span></span>
+          <span className="font-bold text-lg tracking-tight">
+            Krishi <span className="text-primary">AI</span>
+          </span>
         </Link>
 
         <div className="hidden md:flex items-center gap-1">

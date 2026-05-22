@@ -3,8 +3,18 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
 import {
-  Sprout, FlaskConical, Beaker, CloudSun, Bug, TrendingUp,
-  Calendar, Droplets, Loader2, MapPin, Languages, Sparkles,
+  Sprout,
+  FlaskConical,
+  Beaker,
+  CloudSun,
+  Bug,
+  TrendingUp,
+  Calendar,
+  Droplets,
+  Loader2,
+  MapPin,
+  Languages,
+  Sparkles,
 } from "lucide-react";
 import { predictCrop, type CropPredictionInput, type CropPredictionResponse } from "@/lib/api";
 import { ResultCard } from "@/components/ResultCard";
@@ -48,10 +58,24 @@ const fields: {
   { key: "nitrogen", label: "Nitrogen (N)", placeholder: "e.g. 90", min: 0, max: 140 },
   { key: "phosphorus", label: "Phosphorus (P)", placeholder: "e.g. 42", min: 0, max: 145 },
   { key: "potassium", label: "Potassium (K)", placeholder: "e.g. 43", min: 0, max: 205 },
-  { key: "temperature", label: "Temperature (°C)", placeholder: "e.g. 25", min: -10, max: 50, step: "0.1" },
+  {
+    key: "temperature",
+    label: "Temperature (°C)",
+    placeholder: "e.g. 25",
+    min: -10,
+    max: 50,
+    step: "0.1",
+  },
   { key: "humidity", label: "Humidity (%)", placeholder: "e.g. 70", min: 0, max: 100, step: "0.1" },
   { key: "ph", label: "Soil pH", placeholder: "e.g. 6.8", min: 0, max: 14, step: "0.1" },
-  { key: "rainfall", label: "Rainfall (mm)", placeholder: "e.g. 200", min: 0, max: 3000, step: "0.1" },
+  {
+    key: "rainfall",
+    label: "Rainfall (mm)",
+    placeholder: "e.g. 200",
+    min: 0,
+    max: 3000,
+    step: "0.1",
+  },
 ];
 
 function Recommend() {
@@ -130,7 +154,8 @@ function Recommend() {
         </span>
         <h1 className="mt-3 text-4xl sm:text-5xl font-bold">Crop Recommendation</h1>
         <p className="mt-3 text-muted-foreground">
-          Enter your soil and weather details — Krishi AI will recommend the best crop with insights.
+          Enter your soil and weather details — Krishi AI will recommend the best crop with
+          insights.
         </p>
       </motion.div>
 
@@ -170,7 +195,9 @@ function Recommend() {
                 onChange={(e) => setForm({ ...form, location: e.target.value })}
                 className={`mt-1.5 ${inputCls("location")}`}
               />
-              {errors.location && <p className="mt-1 text-xs text-destructive">{errors.location}</p>}
+              {errors.location && (
+                <p className="mt-1 text-xs text-destructive">{errors.location}</p>
+              )}
             </div>
 
             <div className="sm:col-span-2">
@@ -276,12 +303,20 @@ function Recommend() {
                   <ResultCard icon={Calendar} title="Crop Calendar" index={6}>
                     <div className="grid sm:grid-cols-2 gap-3">
                       <div className="rounded-xl bg-muted p-3">
-                        <div className="text-xs text-muted-foreground uppercase tracking-wider">Sowing</div>
-                        <div className="mt-1 font-semibold">{result.crop_calendar?.sowing_time || "—"}</div>
+                        <div className="text-xs text-muted-foreground uppercase tracking-wider">
+                          Sowing
+                        </div>
+                        <div className="mt-1 font-semibold">
+                          {result.crop_calendar?.sowing_time || "—"}
+                        </div>
                       </div>
                       <div className="rounded-xl bg-muted p-3">
-                        <div className="text-xs text-muted-foreground uppercase tracking-wider">Harvest</div>
-                        <div className="mt-1 font-semibold">{result.crop_calendar?.harvesting_time || "—"}</div>
+                        <div className="text-xs text-muted-foreground uppercase tracking-wider">
+                          Harvest
+                        </div>
+                        <div className="mt-1 font-semibold">
+                          {result.crop_calendar?.harvesting_time || "—"}
+                        </div>
                       </div>
                     </div>
                   </ResultCard>
