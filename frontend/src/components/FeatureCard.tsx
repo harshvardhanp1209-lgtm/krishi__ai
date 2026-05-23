@@ -9,11 +9,19 @@ interface Props {
   index?: number;
 }
 
-export function FeatureCard({ icon: Icon, title, description, accent = "primary", index = 0 }: Props) {
+export function FeatureCard({
+  icon: Icon,
+  title,
+  description,
+  accent = "primary",
+  index = 0,
+}: Props) {
   const accentBg =
-    accent === "harvest" ? "bg-harvest/15 text-harvest"
-    : accent === "earth" ? "bg-earth/15 text-earth"
-    : "bg-primary/10 text-primary";
+    accent === "harvest"
+      ? "bg-harvest/15 text-harvest"
+      : accent === "earth"
+        ? "bg-earth/15 text-earth"
+        : "bg-primary/10 text-primary";
   return (
     <motion.div
       initial={{ opacity: 0, y: 24 }}
@@ -23,7 +31,9 @@ export function FeatureCard({ icon: Icon, title, description, accent = "primary"
       whileHover={{ y: -6 }}
       className="group rounded-2xl bg-card border border-border p-6 shadow-soft hover:shadow-glow transition-all"
     >
-      <div className={`h-12 w-12 rounded-xl flex items-center justify-center ${accentBg} group-hover:scale-110 transition-transform`}>
+      <div
+        className={`h-12 w-12 rounded-xl flex items-center justify-center ${accentBg} group-hover:scale-110 transition-transform`}
+      >
         <Icon className="h-6 w-6" />
       </div>
       <h3 className="mt-4 text-lg font-semibold">{title}</h3>

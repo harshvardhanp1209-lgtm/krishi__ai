@@ -12,10 +12,13 @@ interface Props {
 
 export function StatCard({ icon: Icon, label, value, hint, tone = "green", index = 0 }: Props) {
   const toneCls =
-    tone === "yellow" ? "from-accent/30 to-harvest/20 text-harvest"
-    : tone === "earth" ? "from-earth/20 to-secondary/30 text-earth"
-    : tone === "red" ? "from-destructive/15 to-accent/10 text-destructive"
-    : "from-primary/15 to-accent/15 text-primary";
+    tone === "yellow"
+      ? "from-accent/30 to-harvest/20 text-harvest"
+      : tone === "earth"
+        ? "from-earth/20 to-secondary/30 text-earth"
+        : tone === "red"
+          ? "from-destructive/15 to-accent/10 text-destructive"
+          : "from-primary/15 to-accent/15 text-primary";
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.96 }}
@@ -25,7 +28,9 @@ export function StatCard({ icon: Icon, label, value, hint, tone = "green", index
       className={`rounded-2xl border border-border p-6 bg-gradient-to-br ${toneCls} bg-card shadow-soft hover:shadow-glow transition-all`}
     >
       <div className="flex items-center justify-between">
-        <span className="text-xs font-medium uppercase tracking-wider text-muted-foreground">{label}</span>
+        <span className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+          {label}
+        </span>
         <Icon className="h-5 w-5" />
       </div>
       <div className="mt-3 text-2xl font-bold text-foreground">{value}</div>

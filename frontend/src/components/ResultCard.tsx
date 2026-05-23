@@ -21,7 +21,9 @@ export function ResultCard({ icon: Icon, title, children, index = 0 }: Props) {
         <div className="h-10 w-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
           <Icon className="h-5 w-5" />
         </div>
-        <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">{title}</h3>
+        <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
+          {title}
+        </h3>
       </div>
       <div className="mt-3 text-base text-foreground leading-relaxed">{children}</div>
     </motion.div>
